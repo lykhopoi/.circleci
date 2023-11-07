@@ -3,14 +3,14 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/ubuntu:20.04
+      - image: ubuntu:20.04
     steps:
       - checkout
       - run: echo "Hello, world"
       - run: ls -la
       - run: echo "Sample text" > example.txt
       - run: cat example.txt
-      - run: sudo apt update && sudo apt install zip unzip -y
+      - run: apt-get update && apt-get install zip unzip -y
       - run: zip artifact.zip example.txt
       - run: mkdir /tmp/artifacts && mv artifact.zip /tmp/artifacts/
       - store_artifacts:
