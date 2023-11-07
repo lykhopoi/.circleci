@@ -13,4 +13,5 @@ workflows:
             - run: npm run coverage
             - store_artifacts:
                 path: test-results.xml
-                path: coverage
+            - store_artifacts:
+                path: coverage/
