@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ubuntu:20.04
+    steps:
+      - checkout
+      - run: echo "Hello, world"
+      - run: ls -la
+      - run: echo "Sample text" > example.txt
+      - run: cat example.txt
+      - run: sudo apt update && sudo apt install zip unzip -y
+      - run: zip artifact.zip example.txt
+      - run: mkdir /tmp/artifacts && mv artifact.zip /tmp/artifacts/
+      - store_artifacts:
+          path: /tmp/artifacts
+      - run: unzip -l /tmp/artifacts/artifact.zip
+      - run: rm -rf example.txt /tmp/artifacts
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
