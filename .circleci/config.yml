@@ -14,9 +14,8 @@ jobs:
       - run: npm test
       - run: npm run coverage
       - store_artifacts:
-          when: always
-      - store_artifacts:
-          when: always    
+          path: test_results.xml
+          when: always   
 
 workflows:
   version: 2
