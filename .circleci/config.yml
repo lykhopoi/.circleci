@@ -12,10 +12,7 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run: npm test
-      - run: npm run coverage
-      - store_artifacts:
-          path: test_results.xml
-          when: always   
+      - run: npm run coverage  
 
 workflows:
   version: 2
